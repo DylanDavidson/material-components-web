@@ -1,22 +1,17 @@
-# NOTE: All SauceLabs config info is commented out for now, as until we fix our test infrastructure
-# SL will continue to be flaky. Therefore, our tests will run on Firefox ESR using XVFB for the time
-# being.
-
+sudo: required
 language: node_js
 node_js:
-  - node # stable
-  - '--lts' # LTS: See https://github.com/creationix/nvm/pull/1070
+- node
+- --lts
 branches:
   only:
-    - master
-before_install:
-  - 'if [[ -z "$SECURE" ]]; then echo "Using Firefox Fallback"; export DISPLAY=:99.0; sh -e /etc/init.d/xvfb start; fi;'
+  - master
 env:
   global:
-    # - SAUCE_USERNAME=material-sauce
-    # - secure: AxiBF/aKR7YjYP9WYLcAoeFzm4d1XE0loDxk7+K8npWqWTnSnTe8ewrdPPmqHvQaeUqBYHRsFuBTxPXvPYDs2s5s7EUotLVU83Gh3iQw2dmBvuNi81sXlvXbYyJE7qZ/E418bEZBrfNaZ/Mm37ehoLs0+suSy3UjDacfPltObzF7vWedyOmZa5fRVd2/VoX11MMZybGJykUml4jSSg5qrve1P49SgybUaNnvwMMEzGuRi9jwSngvMsHtjS6uCHE/CWNJla3Zt3qjsKBPcwsSZHm/wNEX7frufZ7ReqTZjsMyOidPjlZfH8Yk5fgM610h7noWeav3l0CwsrEgWX0nFdop/3JUfWodqpXWVrTqd1scna4kFvfAcH9qltqXkxlRzetQrURsUiPHC4RkL8E9bUkol++JNhW4Cur287FxP4NVO5Mo3071dwBU7Jh/aQpq0ANJx/js5bZAUIDsEno3uHZe4LLMUBaowU1Jr03wZnis5A7w97kOz0HaUw0W1r5mBo7rB3Fb+CAUnFeVzxoSnkf2npJ1vai8HM7No+qnuV9I/C157LmATyY/UqBScbKe/kk7EeF/YBWfyaeWXxAi68Xmiw4PytAapRn7xfI56hZ28Dc/xdx2uDjPJnu5cKjDjDOxkdSoYO9eG7ZSSbIoD1MskaTjb2y9B6GlAmmSu/I=
+  - SAUCE_USERNAME=material-sauce
+  - secure: kKeE1NPOab6DREAl1G84eNVe25QuBHL3S94UMZbFsiULGgbMuV8W5ZZ1F7V0qJaEA1diWsw2E+KCOXj5UkjJQMBn/tMIT7mRHsSrLqUfdKw1xbbz0S6ASZHTwKne9T0XyVoVbV42fsEl7zzUPlAeQYcrzdgbZtnPBh0RuyZyGp0BEAjihwgxDwNld3t/qKINKd6QsrGaW/viL8jGqk0cTQkfrg9GOFd1rWiIS2GtpmhyiNe5k8ENKG1d2fplGxycFWL9SMCgyXphNx2ggLUVIM8oFCXStSzjwGeAv0+wodonvTUe9rk/C+wxEy6ACPxbn2gpqfpfZSj8iMO53xX0QIC2+RjvpPfKH5Sq3GaeaBTNB3U2oR7ZSEuabq/5Wza4i3pkWYFDwNHwTuk8FYYt1C/XiM6QE4plvMd0T2BWndGje0cJ3KeWRM+6HROVAZWq4sGIkGnYVouguOJSON7b2O5ftaqMi6viYy50tzUDev6cDiEgoTTMnIuXYpbz+q/wCnzISugoyHrkgi7A7fNLHNd97rtBcMZmq2W++qsJLPT3mHy4H+vrsU6yhiKAY8igkfu3mf1G9BCDfmplLy2Yazt6kSoriP/xzZ0Puvqr2BdVmo1oPiy790MKAabQT8FaRf0alMSw+hWqOD811OgUWQMt8COSNaU6lm/pQvf/L4s=
 addons:
   firefox: latest
-  # sauce_connect: true
-  # jwt:
-  #   secure: Z6mGHTjqv+eICZ+BscNnyzMGKJNwhZSzDS477VassOsCfPJ21idue/iEAzbz78bFKDxNoO+j6YCg/k+YP9/K1vbBRVCAJyWKqOMxo2Hr2lE3Ny4QO56sH0YoSebA85BBDkNNZtwwat8/mzSb8yqQOvYctt1YgnKZVlgHTkjxwygl7lqScvfSCmCAvraHAxdY3vLWpyo7fuz7SJigu1LXsjwKoWUF+rl6K0X+rhOUz1RH/+UHzqAABsszMwNkhu8P5Qlx0OHK6FsJ4vk6GrPtSHvKU/xMymdMMaAR2zVmiGISNT5CMZq+Ws4OLvH+9WOKZsgSa3k9QpJEloGt7qRK6OnYxXfQi9Wi3DXvL5nxDrRMb7b+Vf7H4C+oMq+rq1C1KojL5vbs5YKf080PJNhDiyti3H4AvIZI51X5QWL2pP96xdyJ0KQtYccjId8CIG6N5cHZQ59ShaNrulPdI+Jyp4dulO6MNyZJUYtNmSy1O+A0GejBrSavBXydS1zF4Gwfr7iseL1SPc8vauDYxu6zU34QRB2Ira56P+BgjLqZ6mDARnu/uiytRC4cbR2hr5YuHcn5riCb9w8GwI0l53STh63CoMiB5P+Doj5ZFyJZOId6JSckw3/oqx698oQYuqhJiC88Jt/9Vj9VqBGRk8uOcX4ZRgz4mO/6+2aUg/RaEjU=
+  sauce_connect: true
+  jwt:
+    secure: kKeE1NPOab6DREAl1G84eNVe25QuBHL3S94UMZbFsiULGgbMuV8W5ZZ1F7V0qJaEA1diWsw2E+KCOXj5UkjJQMBn/tMIT7mRHsSrLqUfdKw1xbbz0S6ASZHTwKne9T0XyVoVbV42fsEl7zzUPlAeQYcrzdgbZtnPBh0RuyZyGp0BEAjihwgxDwNld3t/qKINKd6QsrGaW/viL8jGqk0cTQkfrg9GOFd1rWiIS2GtpmhyiNe5k8ENKG1d2fplGxycFWL9SMCgyXphNx2ggLUVIM8oFCXStSzjwGeAv0+wodonvTUe9rk/C+wxEy6ACPxbn2gpqfpfZSj8iMO53xX0QIC2+RjvpPfKH5Sq3GaeaBTNB3U2oR7ZSEuabq/5Wza4i3pkWYFDwNHwTuk8FYYt1C/XiM6QE4plvMd0T2BWndGje0cJ3KeWRM+6HROVAZWq4sGIkGnYVouguOJSON7b2O5ftaqMi6viYy50tzUDev6cDiEgoTTMnIuXYpbz+q/wCnzISugoyHrkgi7A7fNLHNd97rtBcMZmq2W++qsJLPT3mHy4H+vrsU6yhiKAY8igkfu3mf1G9BCDfmplLy2Yazt6kSoriP/xzZ0Puvqr2BdVmo1oPiy790MKAabQT8FaRf0alMSw+hWqOD811OgUWQMt8COSNaU6lm/pQvf/L4s=
